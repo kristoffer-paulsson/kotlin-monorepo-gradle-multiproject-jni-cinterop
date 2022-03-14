@@ -22,11 +22,13 @@ repositories {
 
 kotlin {
     jvm {
-        val processResources = compilations["main"].processResourcesTaskName
+        val main by compilations.getting
+        val processResources = main.processResourcesTaskName
         (tasks[processResources] as ProcessResources).apply {
             dependsOn(":jni-printline:assemble")
             from("${project(":jni-printline").buildDir}/lib/main/release/stripped")
         }
+
         compilations.all {
             kotlinOptions.jvmTarget = "1.8"
         }
@@ -55,6 +57,17 @@ kotlin {
         else -> throw GradleException("Host OS is not supported in Kotlin/Native.")
     }
 
+    nativeTarget.apply {
+        val includePath = file("${project(":printline").projectDir}/src/main/public/").absolutePath
+        val libraryPath = file(project.file("${project(":printline").buildDir}/lib/main/release/")).absolutePath
+        val main by compilations.getting
+        val printline by main.cinterops.creating {
+            defFile(project.file("src/nativeInterop/cinterop/printline.def"))
+            compilerOpts("-I$includePath")
+            includeDirs.allHeaders(includePath)
+            extraOpts("-libraryPath", "$libraryPath")
+        }
+    }
 
     sourceSets {
         val commonMain by getting
@@ -71,3 +84,7 @@ kotlin {
         val nativeTest by getting
     }
 }
+
+/*tasks.withType(Cinterop::class) {
+    dependsOn(":printline:assemble")
+}*/

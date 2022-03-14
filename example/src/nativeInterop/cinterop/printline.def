@@ -1,0 +1,3 @@
+headers = printline.h
+staticLibraries = libprintline.a
+package = printline

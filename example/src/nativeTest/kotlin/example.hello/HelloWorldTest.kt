@@ -12,8 +12,14 @@
  * Contributors:
  *      Kristoffer Paulsson - initial implementation
  */
-rootProject.name = "kotlin-monorepo-gradle-multiproject-jni-cinterop"
+package example.hello
 
-include(":printline")
-include(":jni-printline")
-include(":example")
+import kotlin.test.Test
+
+class HelloWorldTest{
+
+    @Test
+    fun helloWorld(){
+        HelloWorld.helloWorld("Cinterop developer")
+    }
+}

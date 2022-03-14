@@ -14,10 +14,12 @@
  */
 package example.interop
 
+import printline.print_line
+
 internal actual class PrintLine {
     actual companion object {
         actual fun print(message: String) {
-            TODO("Implement cinterop!")
+            print_line(message)
         }
     }
 }

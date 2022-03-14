@@ -22,7 +22,6 @@ plugins {
 
 repositories {
     mavenCentral()
-    mavenLocal()
 }
 
 library {
