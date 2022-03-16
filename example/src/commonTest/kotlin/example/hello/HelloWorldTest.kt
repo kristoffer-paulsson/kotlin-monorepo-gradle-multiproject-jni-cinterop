@@ -20,6 +20,6 @@ class HelloWorldTest{
 
     @Test
     fun helloWorld(){
-        HelloWorld.helloWorld("JNI developer")
+        HelloWorld.helloWorld("Interop developer")
     }
 }
