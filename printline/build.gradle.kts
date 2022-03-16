@@ -32,7 +32,7 @@ library {
         })
         when(toolChain) {
             is VisualCpp -> compileTask.compilerArgs.addAll(listOf("/TC"))
-            is Clang, is GccCompatibleToolChain -> compileTask.compilerArgs.addAll(listOf("-x", "c"))
+            is Clang, is GccCompatibleToolChain -> compileTask.compilerArgs.addAll(listOf("-x", "c", "-std=c11"))
         }
     }
 }

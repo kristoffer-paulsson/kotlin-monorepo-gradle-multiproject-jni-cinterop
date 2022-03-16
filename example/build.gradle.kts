@@ -59,13 +59,17 @@ kotlin {
 
     nativeTarget.apply {
         val includePath = file("${project(":printline").projectDir}/src/main/public/").absolutePath
-        val libraryPath = file(project.file("${project(":printline").buildDir}/lib/main/release/")).absolutePath
+        val libraryPathMain = file(project.file("${project(":printline").buildDir}/lib/main/release/")).absolutePath
+        val libraryPathTest = file(project.file("${project(":printline").buildDir}/lib/main/debug/")).absolutePath
+
         val main by compilations.getting
+
         val printline by main.cinterops.creating {
             defFile(project.file("src/nativeInterop/cinterop/printline.def"))
             compilerOpts("-I$includePath")
             includeDirs.allHeaders(includePath)
-            extraOpts("-libraryPath", "$libraryPath")
+            extraOpts("-libraryPath", "$libraryPathMain")
+            extraOpts("-libraryPath", "$libraryPathTest")
         }
     }
 
@@ -85,6 +89,6 @@ kotlin {
     }
 }
 
-/*tasks.withType(Cinterop::class) {
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.CInteropProcess::class) {
     dependsOn(":printline:assemble")
-}*/
+}
