@@ -19,7 +19,7 @@ import kotlin.test.Test
 class HelloWorldTest{
 
     @Test
-    fun helloWorld(){
+    fun helloWorld() {
         HelloWorld.helloWorld("Interop developer")
     }
 }

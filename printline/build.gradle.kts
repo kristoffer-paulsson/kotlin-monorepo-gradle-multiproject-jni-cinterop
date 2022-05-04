@@ -31,7 +31,7 @@ library {
             include("**/*.c")
         })
         when(toolChain) {
-            is VisualCpp -> compileTask.compilerArgs.addAll(listOf("/TC"))
+            is VisualCpp -> compileTask.compilerArgs.addAll(listOf())
             is Clang, is GccCompatibleToolChain -> compileTask.compilerArgs.addAll(listOf("-x", "c", "-std=c11"))
         }
     }
