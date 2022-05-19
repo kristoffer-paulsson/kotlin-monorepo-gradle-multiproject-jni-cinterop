@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="printline-jslegacy">
+    <output-path>$PROJECT_DIR$/printline/build/libs</output-path>
+    <root id="archive" name="printline-jslegacy.jar">
+      <element id="module-output" name="kotlin-monorepo-gradle-multiproject-jni-cinterop.printline.jsMain" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="printline-jvm">
+    <output-path>$PROJECT_DIR$/printline/build/libs</output-path>
+    <root id="archive" name="printline-jvm.jar">
+      <element id="module-output" name="kotlin-monorepo-gradle-multiproject-jni-cinterop.printline.jvmMain" />
+    </root>
+  </artifact>
+</component>

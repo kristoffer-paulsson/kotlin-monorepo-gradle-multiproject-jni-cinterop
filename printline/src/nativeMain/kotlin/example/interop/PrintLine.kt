@@ -14,7 +14,7 @@
  */
 package example.interop
 
-import printline.print_line
+import cprintline.print_line
 
 internal actual class PrintLine {
     actual companion object {

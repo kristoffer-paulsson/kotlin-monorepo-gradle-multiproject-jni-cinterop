@@ -13,11 +13,9 @@
  *      Kristoffer Paulsson - initial implementation
  */
 
-import org.gradle.internal.jvm.Jvm
-
 plugins {
-    base
     `cpp-library`
+    xcode
     `visual-studio`
 }
 
@@ -26,25 +24,15 @@ repositories {
 }
 
 library {
-    binaries.configureEach{
+    linkage.set(listOf(Linkage.STATIC))
+    binaries.configureEach {
         val compileTask = compileTask.get()
-        val javaHome = Jvm.current().javaHome.canonicalPath
-        compileTask.compilerArgs.addAll(compileTask.targetPlatform.map {
-            listOf("-I", "$javaHome/include") + when {
-                it.operatingSystem.isMacOsX -> listOf("-I", "$javaHome/include/darwin")
-                it.operatingSystem.isLinux -> listOf("-I", "$javaHome/include/linux")
-                it.operatingSystem.isWindows -> listOf("-I", "$javaHome/include/win32")
-                else -> emptyList()
-            }
+        compileTask.source.from(fileTree("src/main/c") {
+            include("**/*.c")
         })
-
         when(toolChain) {
-            is VisualCpp -> throw IllegalStateException("Run with MSYS2/Cygwin or similar!")
+            // is VisualCpp -> compileTask.compilerArgs.addAll(listOf("/TC"))
             is Clang, is GccCompatibleToolChain -> compileTask.compilerArgs.addAll(listOf("-x", "c", "-std=c11"))
         }
     }
-}
-
-dependencies {
-    implementation(project(":c-printline"))
 }

@@ -16,7 +16,7 @@ package example.hello
 
 import kotlin.test.Test
 
-class HelloWorldTest{
+class HelloWorldTest {
 
     @Test
     fun helloWorld() {

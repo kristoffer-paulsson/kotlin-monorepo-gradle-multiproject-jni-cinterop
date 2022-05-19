@@ -14,6 +14,6 @@
  */
 rootProject.name = "kotlin-monorepo-gradle-multiproject-jni-cinterop"
 
-include(":printline")
+include(":c-printline")
 include(":jni-printline")
-include(":example")
+include(":printline")

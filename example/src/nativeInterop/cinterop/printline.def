@@ -1,5 +1,0 @@
-headers = printline.h
-staticLibraries.osx = libprintline.a
-staticLibraries.linux = libprintline.a
-staticLibraries.mingw = printline.lib
-package = printline
